@@ -13,7 +13,7 @@
 #define RT_THREAD_PRIORITY_32
 /* RT_THREAD_PRIORITY_256 is not set */
 #define RT_THREAD_PRIORITY_MAX 32
-#define RT_TICK_PER_SECOND 1000
+#define RT_TICK_PER_SECOND 100
 #define RT_USING_OVERFLOW_CHECK
 #define RT_USING_HOOK
 #define RT_USING_IDLE_HOOK
@@ -58,11 +58,8 @@
 /* RT_USING_INTERRUPT_INFO is not set */
 #define RT_USING_CONSOLE
 #define RT_CONSOLEBUF_SIZE 128
-#define RT_CONSOLE_DEVICE_NAME "uart2"
+#define RT_CONSOLE_DEVICE_NAME "uart"
 #define RT_VER_NUM 0x40001
-#define ARCH_ARM
-#define ARCH_ARM_CORTEX_M
-#define ARCH_ARM_CORTEX_M4
 /* ARCH_CPU_STACK_GROWS_UPWARD is not set */
 
 /* RT-Thread Components */
@@ -91,12 +88,23 @@
 /* FINSH_USING_AUTH is not set */
 #define FINSH_USING_MSH
 #define FINSH_USING_MSH_DEFAULT
-#define FINSH_USING_MSH_ONLY
+/* FINSH_USING_MSH_ONLY is not set */
 #define FINSH_ARG_MAX 10
 
 /* Device virtual file system */
 
-/* RT_USING_DFS is not set */
+#define RT_USING_DFS
+#define DFS_USING_WORKDIR
+#define DFS_FILESYSTEMS_MAX 2
+#define DFS_FILESYSTEM_TYPES_MAX 2
+#define DFS_FD_MAX 16
+/* RT_USING_DFS_MNTTABLE is not set */
+/* RT_USING_DFS_ELMFAT is not set */
+#define RT_USING_DFS_DEVFS
+/* RT_USING_DFS_ROMFS is not set */
+/* RT_USING_DFS_RAMFS is not set */
+/* RT_USING_DFS_UFFS is not set */
+/* RT_USING_DFS_JFFS2 is not set */
 
 /* Device Drivers */
 
@@ -121,6 +129,7 @@
 /* RT_USING_SPI is not set */
 /* RT_USING_WDT is not set */
 /* RT_USING_AUDIO is not set */
+/* RT_USING_SENSOR is not set */
 
 /* Using WiFi */
 
@@ -133,8 +142,13 @@
 
 /* POSIX layer and C standard library */
 
-/* RT_USING_LIBC is not set */
+#define RT_USING_LIBC
 /* RT_USING_PTHREADS is not set */
+#define RT_USING_POSIX
+/* RT_USING_POSIX_MMAP is not set */
+/* RT_USING_POSIX_TERMIOS is not set */
+/* RT_USING_POSIX_AIO is not set */
+/* RT_USING_MODULE is not set */
 
 /* Network */
 
@@ -164,12 +178,6 @@
 /* RT_USING_RYM is not set */
 /* RT_USING_ULOG is not set */
 /* RT_USING_UTEST is not set */
-
-/* ARM CMSIS */
-
-/* RT_USING_CMSIS_OS is not set */
-/* RT_USING_RTT_CMSIS is not set */
-/* RT_USING_LWP is not set */
 
 /* RT-Thread online packages */
 
@@ -240,7 +248,6 @@
 /* system packages */
 
 /* PKG_USING_GUIENGINE is not set */
-/* PKG_USING_PERSIMMON is not set */
 /* PKG_USING_CAIRO is not set */
 /* PKG_USING_PIXMAN is not set */
 /* PKG_USING_LWEXT4 is not set */
@@ -289,23 +296,9 @@
 /* PKG_USING_PERIPHERAL_SAMPLES is not set */
 /* PKG_USING_HELLO is not set */
 /* PKG_USING_VI is not set */
-#define SOC_FAMILY_STM32
-#define SOC_SERIES_STM32F4
-
-/* Hardware Drivers Config */
-
-#define SOC_STM32F405RG
-
-/* Onboard Peripheral Drivers */
-
-/* On-chip Peripheral Drivers */
-
-#define BSP_USING_GPIO
-#define BSP_USING_UART
-#define BSP_USING_UART2
-/* BSP_UART2_RX_USING_DMA is not set */
-
-/* Board extended module Drivers */
-
+#define CC2538SF53
+/* RT_USING_HSI is not set */
+#define RT_HSE_VALUE 8000000
+#define RT_USING_UART1
 
 #endif

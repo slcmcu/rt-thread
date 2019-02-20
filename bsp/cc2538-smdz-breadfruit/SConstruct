@@ -8,6 +8,7 @@ else:
     RTT_ROOT = os.path.normpath(os.getcwd() + '/../..')
 
 sys.path = sys.path + [os.path.join(RTT_ROOT, 'tools')]
+
 from building import *
 
 TARGET = 'rtthread-cc2538.' + rtconfig.TARGET_EXT
@@ -28,8 +29,8 @@ Export('RTT_ROOT')
 Export('rtconfig')
 
 # prepare building environment
-#objs = PrepareBuilding(env, RTT_ROOT, has_libcpu=False)
+objs = PrepareBuilding(env, RTT_ROOT, has_libcpu=False)
 
 
 # make a building
-#DoBuilding(TARGET, objs)
+DoBuilding(TARGET, objs)

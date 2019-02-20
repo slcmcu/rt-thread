@@ -48,7 +48,7 @@
  * \file
  * Clock driver implementation for the TI cc2538
  */
-#include "contiki.h"
+// #include "contiki.h"
 #include "systick.h"
 #include "reg.h"
 #include "cpu.h"
