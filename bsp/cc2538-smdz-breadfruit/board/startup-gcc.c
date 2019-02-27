@@ -36,13 +36,13 @@
  * \file
  * Startup code for the cc2538 chip, to be used when building with gcc
  */
-#include "contiki.h"
-#include "reg.h"
-#include "flash-cca.h"
-#include "sys-ctrl.h"
-#include "rom-util.h"
+// #include "contiki.h"
+//#include "reg.h"
+//#include "flash-cca.h"
+//#include "sys-ctrl.h"
+//#include "rom-util.h"
 
-#include <stdint.h>
+//#include <stdint.h>
 /*---------------------------------------------------------------------------*/
 extern int main(void);
 /*---------------------------------------------------------------------------*/
@@ -94,26 +94,27 @@ void crypto_isr(void);
 static unsigned long stack[512] __attribute__ ((section(".stack")));
 /*---------------------------------------------------------------------------*/
 /* Linker construct indicating .text section location */
-extern uint8_t _text[0];
+//extern uint8_t _text[0];
 /*---------------------------------------------------------------------------*/
-__attribute__ ((section(".flashcca"), used))
-const flash_cca_lock_page_t __cca = {
-  FLASH_CCA_BOOTLDR_CFG,          /* Boot loader backdoor configuration */
-  FLASH_CCA_IMAGE_VALID,         /* Image valid */
-  &_text,                        /* Vector table located at the start of .text */
+
+//__attribute__ ((section(".flashcca"), used))
+//const flash_cca_lock_page_t __cca = {
+//  FLASH_CCA_BOOTLDR_CFG,          /* Boot loader backdoor configuration */
+//  FLASH_CCA_IMAGE_VALID,         /* Image valid */
+//  &_text,                        /* Vector table located at the start of .text */
   /* Unlock all pages and debug */
-  { 0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF,
-    0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF,
-    0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF,
-    0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF }
-};
+//  { 0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF,
+//    0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF,
+//    0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF,
+//    0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF }
+//};
 /*---------------------------------------------------------------------------*/
 __attribute__ ((section(".vectors"), used))
 void(*const vectors[])(void) =
 {
   (void (*)(void))((unsigned long)stack + sizeof(stack)),   /* Stack pointer */
-  reset_handler,              /* Reset handler */
-  nmi_handler,                /* The NMI handler */
+//  reset_handler,              /* Reset handler */
+//  nmi_handler,                /* The NMI handler */
   default_handler,            /* The hard fault handler */
   default_handler,            /* 4 The MPU fault handler */
   default_handler,            /* 5 The bus fault handler */
@@ -126,14 +127,14 @@ void(*const vectors[])(void) =
   default_handler,            /* 12 Debug monitor handler */
   0,                          /* 13 Reserved */
   default_handler,            /* 14 The PendSV handler */
-  clock_isr,                  /* 15 The SysTick handler */
-  gpio_port_a_isr,            /* 16 GPIO Port A */
-  gpio_port_b_isr,            /* 17 GPIO Port B */
-  gpio_port_c_isr,            /* 18 GPIO Port C */
-  gpio_port_d_isr,            /* 19 GPIO Port D */
+//  clock_isr,                  /* 15 The SysTick handler */
+//  gpio_port_a_isr,            /* 16 GPIO Port A */
+//  gpio_port_b_isr,            /* 17 GPIO Port B */
+//  gpio_port_c_isr,            /* 18 GPIO Port C */
+//  gpio_port_d_isr,            /* 19 GPIO Port D */
   0,                          /* 20 none */
-  uart0_isr,                  /* 21 UART0 Rx and Tx */
-  uart1_isr,                  /* 22 UART1 Rx and Tx */
+//  uart0_isr,                  /* 21 UART0 Rx and Tx */
+//  uart1_isr,                  /* 22 UART1 Rx and Tx */
   default_handler,            /* 23 SSI0 Rx and Tx */
   default_handler,            /* 24 I2C Master and Slave */
   0,                          /* 25 Reserved */
@@ -173,8 +174,8 @@ void(*const vectors[])(void) =
   0,                          /* 59 Reserved */
   0,                          /* 60 Reserved */
   0,                          /* 61 Reserved */
-  udma_isr,                   /* 62 uDMA */
-  udma_err_isr,               /* 63 uDMA Error */
+//  udma_isr,                   /* 62 uDMA */
+//  udma_err_isr,               /* 63 uDMA Error */
   0,                          /* 64 64-155 are not in use */
   0,                          /* 65 */
   0,                          /* 66 */
@@ -267,27 +268,27 @@ void(*const vectors[])(void) =
   0,                          /* 153 */
   0,                          /* 154 */
   0,                          /* 155 */
-  usb_isr,                    /* 156 USB */
-  cc2538_rf_rx_tx_isr,        /* 157 RFCORE RX/TX */
-  cc2538_rf_err_isr,          /* 158 RFCORE Error */
-  crypto_isr,                 /* 159 AES */
+//  usb_isr,                    /* 156 USB */
+//  cc2538_rf_rx_tx_isr,        /* 157 RFCORE RX/TX */
+//  cc2538_rf_err_isr,          /* 158 RFCORE Error */
+//  crypto_isr,                 /* 159 AES */
   default_handler,            /* 160 PKA */
-  rtimer_isr,                 /* 161 SM Timer */
+ // rtimer_isr,                 /* 161 SM Timer */
   default_handler,            /* 162 MACTimer */
 };
 /*---------------------------------------------------------------------------*/
 /* Linker constructs indicating .data and .bss segment locations */
-extern uint8_t _ldata;
-extern uint8_t _data;
-extern uint8_t _edata;
-extern uint8_t _bss;
-extern uint8_t _ebss;
+//extern uint8_t _ldata;
+//extern uint8_t _data;
+//extern uint8_t _edata;
+//extern uint8_t _bss;
+//extern uint8_t _ebss;
 /*---------------------------------------------------------------------------*/
 /* Weak interrupt handlers. */
 void
 nmi_handler(void)
 {
-  reset_handler();
+ // reset_handler();
   while(1);
 }
 /*---------------------------------------------------------------------------*/
@@ -300,13 +301,13 @@ default_handler(void)
 void
 reset_handler(void)
 {
-  REG(SYS_CTRL_EMUOVR) = 0xFF;
+  //REG(SYS_CTRL_EMUOVR) = 0xFF;
 
   /* Copy the data segment initializers from flash to SRAM. */
-  rom_util_memcpy(&_data, &_ldata, &_edata - &_data);
+ // rom_util_memcpy(&_data, &_ldata, &_edata - &_data);
 
   /* Zero-fill the bss segment. */
-  rom_util_memset(&_bss, 0, &_ebss - &_bss);
+ // rom_util_memset(&_bss, 0, &_ebss - &_bss);
 
   /* call the application's entry point. */
   main();

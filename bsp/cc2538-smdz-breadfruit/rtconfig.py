@@ -42,7 +42,7 @@ if PLATFORM == 'gcc':
     DEVICE = ' -mcpu=cortex-m3 -mthumb -ffunction-sections -fdata-sections'
     CFLAGS = DEVICE
     AFLAGS = ' -c' + DEVICE + ' -x assembler-with-cpp'
-    LFLAGS = DEVICE + ' -Wl,--gc-sections,-Map=rtthread-cc2538.map,-cref,-u,Reset_Handler -T stm32_rom.ld'
+    LFLAGS = DEVICE + ' -Wl,--gc-sections,-Map=rtthread-cc2538.map,-cref,-u,Reset_Handler -T cc2538.ld'
 
     CPATH = ''
     LPATH = ''
